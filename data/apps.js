@@ -36,7 +36,7 @@ window.TITAN_APPS = [
     version: '1.0.0',
     updated: '2026-10-04',
     fileName: 'titan-dial-1.0.0.apk',
-    sizeBytes: 1064133,
+    sizeBytes: 1064217,
     minAndroid: 'Android 8.0（API 26）',
     keywords: ['拨号', '通话记录', '通讯录', '实体键盘', 'T9', '双卡双待'],
 
@@ -150,7 +150,7 @@ window.TITAN_APPS = [
     ],
 
     checksum: {
-      sha256: '3a1d29658d103e5978a4ca0ab01d4a09793abe9c8e3e1bf13acd95e1986b5785',
+      sha256: '03344cfccc7b7bf2f8bd7248f9304e6bc3ea82415801c931e40aa8a3a6aad167',
       verifiedWith: 'apksigner (Android build-tools 35.0.0)',
     },
 
