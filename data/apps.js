@@ -36,7 +36,7 @@ window.TITAN_APPS = [
     version: '1.0.0',
     updated: '2026-10-04',
     fileName: 'titan-dial-1.0.0.apk',
-    sizeBytes: 1081397,
+    sizeBytes: 1081393,
     minAndroid: 'Android 8.0（API 26）',
     keywords: ['拨号', '通话记录', '通讯录', '实体键盘', 'T9', '双卡双待'],
 
@@ -48,10 +48,18 @@ window.TITAN_APPS = [
 
     highlights: [
       {
+        title: '按键依实际硬件设计',
+        body:
+          'Titan 2 的功能键列只有 Shift、Sym、Back、Recent、Fn、Alt，加上 26 个字母键——' +
+          '没有 Tab、没有 Esc、没有方向键、没有空格键。' +
+          '因此所有操作都绑定在 Alt + 字母 与 Back 键上，而不是那些「一般手机都有」' +
+          '但这台机器上根本不存在的按键。应用内的快捷键说明也只列出真实存在的键。',
+      },
+      {
         title: '两条数字输入路径',
         body:
           '优先使用固件的 Sym 数字层——如果系统已经能送出数字键，应用直接沿用，' +
-          '零学习成本。固件不提供时，按一次空格键切换数字模式，' +
+          '零学习成本。固件不提供时，按一次 D 键切换数字模式，' +
           'W~P 对应 1~9、L 对应 0、/ 对应 *、. 对应 #，屏幕上会显示同一张对照表。',
       },
       {
@@ -99,17 +107,14 @@ window.TITAN_APPS = [
     ],
 
     shortcuts: [
-      { key: '0–9 * #', desc: '输入数字（数字键排或数字模式）' },
-      { key: '空格', desc: '切换数字模式' },
-      { key: 'Enter', desc: '拨号 / 拨打选中的项目' },
-      { key: 'Backspace', desc: '删除一位' },
-      { key: 'Shift + Backspace', desc: '清除整串输入' },
-      { key: 'Tab / Shift + Tab', desc: '切换分页' },
-      { key: '↑ ↓ 或 J K', desc: '在列表中移动选择' },
-      { key: 'Esc', desc: '关闭窗口 / 取消选择' },
-      { key: '/ 或 ?', desc: '显示快捷键说明' },
-      { key: '点击顶栏 SIM', desc: '切换拨出的线路 / 跟随系统预设' },
-      { key: '↑ ↓ + Enter', desc: '在左栏匹配的联系人中选取并直接拨号' },
+      { key: 'Alt + G', desc: '拨出画面上的号码' },
+      { key: 'D', desc: '拨号盘切换数字模式（W~P = 1~9，L = 0）' },
+      { key: 'Alt + Z / X / C', desc: '切换拨号盘 / 通话记录 / 通讯录' },
+      { key: 'Alt + W / S', desc: '在列表中向上 / 向下移动（W 在 S 上方）' },
+      { key: 'Enter', desc: '拨打已选中的联系人，或已输入的号码' },
+      { key: 'Backspace', desc: '删除最后一位' },
+      { key: 'Alt + V', desc: '清除整串输入' },
+      { key: 'Back 键', desc: '关闭窗口或取消选取' },
     ],
 
     permissions: [
@@ -133,7 +138,7 @@ window.TITAN_APPS = [
       {
         q: '我的手机上按数字键没反应？',
         a:
-          '先按一次空格键切换到数字模式，再按顶排的字母键（W~P 对应 1~9，L 对应 0）。' +
+          '先按一次 D 键切换到数字模式，再按顶排的字母键（W~P 对应 1~9，L 对应 0）。' +
           '如果这样可以用，说明你的固件没有提供数字层，这正是数字模式存在的意义。' +
           '如果 Sym 加字母键本来就能输入数字，应用会直接使用固件提供的数字，你不需要做任何切换。',
       },
@@ -171,7 +176,7 @@ window.TITAN_APPS = [
     ],
 
     checksum: {
-      sha256: '7f34608510512ee631e22c0f81b6d969b6bfda4c8db018d09021e158f4079576',
+      sha256: '08a7941adefeeec955f417e79da64e0ccadfa236e078b1f1b4a813eef4fcbf15',
       verifiedWith: 'apksigner (Android build-tools 35.0.0)',
     },
 
