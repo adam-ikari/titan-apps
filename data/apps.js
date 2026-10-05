@@ -36,7 +36,7 @@ window.TITAN_APPS = [
     version: '1.0.0',
     updated: '2026-10-04',
     fileName: 'titan-dial-1.0.0.apk',
-    sizeBytes: 1064681,
+    sizeBytes: 1081397,
     minAndroid: 'Android 8.0（API 26）',
     keywords: ['拨号', '通话记录', '通讯录', '实体键盘', 'T9', '双卡双待'],
 
@@ -82,6 +82,15 @@ window.TITAN_APPS = [
           '拨打国际电话时必须去掉，应用会自动处理；本地号码 (02) 2799-1234 则保留 02。',
       },
       {
+        title: '双栏拨号盘',
+        body:
+          '屏幕宽度足够时界面分为两栏：左侧显示 SIM 选择、当前号码，以及与号码' +
+          '匹配的联系人与通话记录；右侧是拨号键盘。' +
+          '输入三位以上号码后，左栏会即时列出这个号码属于谁——' +
+          '不必拨出去才知道拨错了人。用 ↑↓ 选中、Enter 就能直接拨给该联系人，' +
+          '整个过程不需要碰屏幕。',
+      },
+      {
         title: '通话中界面',
         body:
           '通过 TelecomManager 自行管理通话状态，屏幕上显示拨号中 / 通话中横幅与挂断按钮，' +
@@ -100,6 +109,7 @@ window.TITAN_APPS = [
       { key: 'Esc', desc: '关闭窗口 / 取消选择' },
       { key: '/ 或 ?', desc: '显示快捷键说明' },
       { key: '点击顶栏 SIM', desc: '切换拨出的线路 / 跟随系统预设' },
+      { key: '↑ ↓ + Enter', desc: '在左栏匹配的联系人中选取并直接拨号' },
     ],
 
     permissions: [
@@ -161,7 +171,7 @@ window.TITAN_APPS = [
     ],
 
     checksum: {
-      sha256: '184eff93ce38f0552d76b9182181c8a9d9e0e6e4e7b49be3072d8b6ecf94d5c2',
+      sha256: '7f34608510512ee631e22c0f81b6d969b6bfda4c8db018d09021e158f4079576',
       verifiedWith: 'apksigner (Android build-tools 35.0.0)',
     },
 
