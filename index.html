@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Titan 应用 · 为 Unihertz Titan 系列全键盘手机打造</title>
+<meta name="description" content="为 Unihertz Titan 系列全键盘手机打造的应用。实体键盘是一等公民，让拨号、搜索、浏览都能真正用手完成。">
+<meta name="theme-color" content="#0b0f14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Titan 应用 · 为 Unihertz Titan 系列全键盘手机打造">
+<meta property="og:description" content="Titan 系列没有数字键排。这里的每一个应用都以此为出发点设计。">
+<meta property="og:locale" content="zh_CN">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#apps">跳到应用列表</a>
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true">▦</span>
+      <span>Titan 应用</span>
+      <span class="brand__sub">全键盘手机的应用</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      <a href="#apps">应用</a>
+      <a href="#install">安装</a>
+      <a href="#about">关于</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 主视觉 -->
+  <section class="shell hero">
+    <p class="hero__eyebrow" id="app-count">正在载入…</p>
+    <h1>为没有数字键排的手机，<br>做真正好用的应用</h1>
+    <p class="hero__lede">
+      Unihertz Titan 系列的键盘只有三排字母，没有数字键排，所有数字都藏在符号层里。
+      大多数手机应用默认你会用手指戳屏幕——这对一台为打字而生的机器来说是浪费。
+      这里的每一个应用都从这一点出发设计。
+    </p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#apps" data-hero-download hidden>查看应用</a>
+      <a class="btn btn--ghost" href="#install">如何安装</a>
+    </div>
+
+    <!-- 直接把「没有数字键排」这件事画出来 -->
+    <div class="keyboard-hint" aria-hidden="true">
+      <p class="keyboard-hint__title">Titan 键盘 · 顶排字母即数字（应用内数字模式）</p>
+      <div class="keyboard-hint__row">
+        <span class="keyboard-hint__key">W</span>
+        <span class="keyboard-hint__key">E</span>
+        <span class="keyboard-hint__key">R</span>
+        <span class="keyboard-hint__key">T</span>
+        <span class="keyboard-hint__key">Y</span>
+        <span class="keyboard-hint__key">U</span>
+        <span class="keyboard-hint__key">I</span>
+        <span class="keyboard-hint__key">O</span>
+        <span class="keyboard-hint__key">P</span>
+      </div>
+      <div class="keyboard-hint__row" style="margin-top:6px">
+        <span class="keyboard-hint__key keyboard-hint__key--digit">1</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">2</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">3</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">4</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">5</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">6</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">7</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">8</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">9</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">L → 0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 应用目录：由 site/data/apps.js 填充 -->
+  <section class="section" id="apps">
+    <div class="shell">
+      <div class="section__head">
+        <span class="section__label">应用</span>
+        <h2>下载</h2>
+        <p>全部为侧载安装的开源应用，无广告、无网络权限，不收集任何数据。</p>
+      </div>
+
+      <div class="app-list" id="app-list">
+        <!-- JS 未执行时的兜底 -->
+        <noscript>
+          <p class="empty-state">
+            这个页面需要 JavaScript 才能列出应用。
+            你可以直接下载：<code>downloads/titan-dial-1.0.0.apk</code>
+          </p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- 安装说明 -->
+  <section class="section" id="install">
+    <div class="shell">
+      <div class="section__head">
+        <span class="section__label">开始使用</span>
+        <h2>安装步骤</h2>
+        <p>这些应用不在应用商店上架，需要手动安装 APK。整个过程大约一分钟。</p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <p>
+            <strong>下载 APK。</strong>
+            用手机浏览器打开本页并点击下载按钮，或把 APK 传到手机后用文件管理器打开。
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>允许安装未知应用。</strong>
+            系统会提示「禁止安装未知应用」，按提示进入设置，允许你正在使用的
+            浏览器或文件管理器安装应用，然后返回继续。
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>核对指纹（可选但建议）。</strong>
+            APK 附有 SHA-256 校验值，核对无误可确认文件未被篡改。
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>安装并授权。</strong>
+            首次启动会请求通讯录、通话记录与拨话权限。拒绝也可以使用，
+            只是相关列表会是空的——应用会明确说明原因，不会假装没有记录。
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section class="section" id="about">
+    <div class="shell">
+      <div class="section__head">
+        <span class="section__label">关于</span>
+        <h2>这个站点是怎么来的</h2>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <h5>键盘是主要输入方式</h5>
+          <p>
+            触控不是唯一入口，实体键盘才是。应用会拦截按键事件，
+            让数字、字母、搜索都走键盘，而不是弹出一个软键盘。
+          </p>
+        </div>
+        <div class="feature">
+          <h5>不建本地数据库</h5>
+          <p>
+            通讯录和通话记录直接读取系统提供器，因此和系统其他地方显示的内容始终一致，
+            也没有需要迁移的数据。
+          </p>
+        </div>
+        <div class="feature">
+          <h5>不收集数据</h5>
+          <p>
+            所有应用都不申请网络权限。所有数据都在本机读取与处理，不会上传到任何地方。
+          </p>
+        </div>
+        <div class="feature">
+          <h5>有测试</h5>
+          <p>
+            键盘映射、号码处理与状态机逻辑都有自动化测试覆盖，
+            因为这些逻辑出错的后果是「拨错号码」或「按了没反应」。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-links">
+      <a href="#apps">应用列表</a>
+      <a href="#install">安装步骤</a>
+      <a href="#about">关于</a>
+    </div>
+    <p>Titan 应用 · 为 Unihertz Titan 系列全键盘手机打造。</p>
+    <p>Unihertz 与 Titan 是 Unihertz 的商标，本站与其无关。</p>
+  </div>
+</footer>
+
+<script src="data/apps.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

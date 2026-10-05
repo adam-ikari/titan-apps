@@ -1,0 +1,12 @@
+{
+  "name": "titan-site-verify",
+  "private": true,
+  "version": "1.0.0",
+  "description": "用 jsdom 实际执行站点脚本并断言渲染结果",
+  "scripts": {
+    "test": "node verify.js"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.0"
+  }
+}
