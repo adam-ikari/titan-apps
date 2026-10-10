@@ -109,7 +109,7 @@ node verify.js
 ## 发布
 
 ```bash
-VERSION=1.1.0
+VERSION=1.1.1
 
 # 1. 先升版本：app/build.gradle.kts 里的 versionCode 与 versionName。
 #    versionCode 不升，已安装的使用者就拿不到可以覆盖安装的 APK。
