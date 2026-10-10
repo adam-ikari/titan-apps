@@ -1,39 +1,23 @@
-# Titan 应用
+# Titan 应用网站
 
-发布与下载 Unihertz Titan 系列全键盘手机应用的网站。
+介绍与分发 Unihertz Titan 系列全键盘手机应用的静态站点。
 
-**线上地址**：<https://adam-ikari.github.io/titan-apps/>
+## 为什么是静态站
 
-本站是纯静态站点：一个 HTML、一个 CSS、一个 JS，没有构建步骤、没有运行时依赖。
-应用源码在另一个私有仓库里，这里只存放站点文件与已签名的 APK。
-
----
-
-## 与应用源码仓库的关系
-
-| | 仓库 | 可见性 | 内容 |
-| --- | --- | --- | --- |
-| 应用 | `adam-ikari/titan_dial` | 私有 | Android 工程、签名密钥、测试 |
-| 网站 | `adam-ikari/titan-apps`（本仓库） | 公开 | 站点文件、已签名 APK |
-
-应用源码暂不公开，因为该应用**尚未在真机上完成验证**（详见下方「当前状态」）。
-验证完成后再决定是否公开源码，届时网站无需改动。
-
-站点内容以本仓库为准：`index.html`、`assets/`、`data/`、`downloads/` 就是线上实际
-提供的文件。应用更新后，把新的 APK 与目录数据复制过来即可。
-
----
+零构建、零依赖、零运行时：一个 HTML、一个 CSS、一个 JS。所有内容都在
+`data/apps.js` 里。丢进 GitHub Pages、Netlify、对象存储，或者直接双击
+`index.html` 打开都能工作——没有需要维护的构建链，也没有会过期的依赖。
 
 ## 结构
 
 ```
-index.html          页面骨架（不依赖 JS 也能看到框架与 noscript 提示）
-assets/style.css    样式与设计令牌
-assets/app.js       渲染逻辑
-data/apps.js        应用目录 —— 要新增应用只改这里
-downloads/          已签名的 APK
-test/verify.js      jsdom 验证脚本
-.nojekyll           让 GitHub Pages 跳过 Jekyll 处理
+site/
+  index.html          页面骨架（不依赖 JS 也能看到框架与 noscript 提示）
+  assets/style.css    样式与设计令牌
+  assets/app.js       渲染逻辑
+  data/apps.js        应用目录 —— 要新增应用只改这里
+  downloads/          APK 文件
+  test/verify.js      jsdom 验证脚本
 ```
 
 ## 新增一个应用
@@ -58,8 +42,8 @@ test/verify.js      jsdom 验证脚本
 }
 ```
 
-把 APK 放进 `downloads/`，文件名与 `fileName` 一致。`sizeBytes` 可用
-`stat -c%s downloads/xxx.apk` 取得，`checksum.sha256` 用 `sha256sum` 取得。
+把 APK 放进 `downloads/`，文件名与 `fileName` 一致。`sizeBytes` 用于显示
+体积，可用 `stat -c%s downloads/xxx.apk` 取得。
 
 ### 状态说明
 
@@ -73,28 +57,21 @@ test/verify.js      jsdom 验证脚本
 不合规时不会生成下载链接，而是显示「文件缺失」——这样编辑目录时打错字会立刻
 暴露，而不是留下一个死链。
 
-### 为什么目录是 JS 而不是 JSON
-
-站点同时会被部署到 HTTP 服务器，也可能被直接用浏览器打开本地文件。
-`fetch()` 在 `file://` 下会被 CORS 拦掉，所以目录数据用全局变量
-（`window.TITAN_APPS`）声明，任何环境都能用。
-
----
-
 ## 本地预览
 
 ```bash
+cd site
 python3 -m http.server 8099
 # 打开 http://127.0.0.1:8099/
 ```
 
-直接双击 `index.html` 也能看。站点内所有路径都是相对路径，因此在
-`/titan-apps/` 这样的子路径下同样正常（已验证）。
+直接双击 `index.html` 也能看。目录数据用的是全局变量而不是 `fetch()`
+加载 JSON，因此在 `file://` 下不会被 CORS 拦住。
 
 ## 验证
 
 ```bash
-cd test
+cd site/test
 npm install
 node verify.js
 ```
@@ -104,41 +81,16 @@ node verify.js
 （含 `javascript:`、路径穿越等注入用例）、空目录兜底、无障碍与安全检查、
 以及配色与实测对比度是否一致。
 
-这不是快照测试。它抓到过两个真实缺陷，值得保留：
+这个脚本抓到过两个真实缺陷，值得保留：
 
 - `subsection()` 原本无条件 `appendChild(node)`，传 `null` 会抛异常并让整页白屏。
 - `safeUrl()` 原本只接受以 `/`、`./`、`../` 开头的路径，导致
   `downloads/app.apk` 被判非法——**页面上所有下载按钮都是死的**。
 
----
-
-## 发布
-
-站点由 GitHub Pages 直接从 `main` 分支的仓库根目录提供，无需 CI。
-
-更新流程：
-
-```bash
-# 1. 在应用仓库构建并签名
-./gradlew :app:assembleRelease
-
-# 2. 复制 APK 与目录数据
-cp app-release.apk <本站仓库>/downloads/titan-dial-1.0.0.apk
-#    并更新 data/apps.js 里的 sizeBytes / checksum.sha256 / version
-
-# 3. 验证后再提交
-cd <本站仓库>/test && node verify.js
-```
-
-`.nojekyll` 是必要的：本站根目录的 `_` 前缀路径会被 Jekyll 忽略，
-加上这个空文件可以让 Pages 完全跳过 Jekyll 处理。
-
----
-
 ## 无障碍与配色
 
-配色沿用应用的深色 + 绿色主题。色值不是拍脑袋选的，是按 WCAG 反解出来的，
-括号里的对比度是实测最低值（取自 bg / surface / surface-2 三种底色）：
+配色沿用 App 的深色 + 绿色主题。色值不是拍脑袋选的，是按 WCAG 反解出来的，
+括号里的对比度是实测最低值（取自三种底色）：
 
 | 令牌 | 色值 | 最低对比度 | 用途 |
 | --- | --- | --- | --- |
@@ -154,24 +106,43 @@ cd <本站仓库>/test && node verify.js
 另外：所有可点击元素最小 44×44px，焦点样式用 `:focus-visible`，动画全部受
 `prefers-reduced-motion` 控制，页面骨架提供 `noscript` 与跳转链接。
 
----
+## 发布
 
-## 当前状态
+```bash
+VERSION=1.1.0
 
-| 项目 | 状态 |
-| --- | --- |
-| 应用单元测试 | 54 项通过 |
-| 静态检查 | 0 错误 |
-| APK 签名 | 已签署并验证（v2 + v3） |
-| 网站验证 | 66 项通过 |
-| **真机验证** | **尚未完成** |
+# 1. 先升版本：app/build.gradle.kts 里的 versionCode 与 versionName。
+#    versionCode 不升，已安装的使用者就拿不到可以覆盖安装的 APK。
 
-真机验证是唯一还缺的一环。应用在逻辑层有测试覆盖，但键盘事件在不同厂商固件上
-的行为仍需实测确认——具体来说，Unihertz 固件的 Sym 数字层是否真的会送出数字
-键码，决定了用户是否需要手动切换数字模式。
+# 2. 构建并签名
+./gradlew :app:assembleRelease
 
-在完成实机验证之前，网站上的应用标示为「公测版」。
+# 3. 放进下载目录，文件名与目录里的 fileName 一致；旧版 APK 可以删掉，
+#    页面只链当前版本
+cp app/build/outputs/apk/release/app-release.apk \
+   site/downloads/titan-dial-$VERSION.apk
 
----
+# 4. 取新的体积与指纹，填进 data/apps.js 的 sizeBytes 与 checksum.sha256
+stat -c%s site/downloads/titan-dial-$VERSION.apk
+sha256sum site/downloads/titan-dial-$VERSION.apk
 
-Unihertz 与 Titan 是 Unihertz 的商标，本站与其无关。
+# 5. 同步 data/apps.js 的 version / updated / fileName / changelog
+
+# 6. 验证
+cd site/test && node verify.js
+```
+
+`verify.js` 里与版本有关的断言都从目录数据推导（版本号、各表格行数），不发新版
+不需要动测试；真正会失败的是「磁盘上的 APK 与 `sizeBytes` 不一致」这类实质错误。
+
+`site/downloads/` 里的 APK **是**提交进 Git 的（约 1 MB），这样仓库本身就是
+一个完整可部署的站点，`git push` 之后可以直接开 GitHub Pages，不用另外传文件。
+
+如果你更希望把 APK 放在 GitHub Releases 或对象存储上：
+
+1. 把 `site/downloads/` 加进 `.gitignore`；
+2. 把目录里的 `fileName` 换成完整 URL，`safeUrl()` 允许 `http`/`https`；
+3. 部署站点时不必带上 `downloads/`。
+
+两种方式 `verify.js` 都能正常通过——文件名不合规时它会报「文件缺失」而不是
+悄悄留下死链。

@@ -52,6 +52,7 @@
     <div class="keyboard-hint" aria-hidden="true">
       <p class="keyboard-hint__title">Titan 键盘 · 顶排字母即数字（应用内数字模式）</p>
       <div class="keyboard-hint__row">
+        <span class="keyboard-hint__key">Q</span>
         <span class="keyboard-hint__key">W</span>
         <span class="keyboard-hint__key">E</span>
         <span class="keyboard-hint__key">R</span>
@@ -72,7 +73,7 @@
         <span class="keyboard-hint__key keyboard-hint__key--digit">7</span>
         <span class="keyboard-hint__key keyboard-hint__key--digit">8</span>
         <span class="keyboard-hint__key keyboard-hint__key--digit">9</span>
-        <span class="keyboard-hint__key keyboard-hint__key--digit">L → 0</span>
+        <span class="keyboard-hint__key keyboard-hint__key--digit">0</span>
       </div>
     </div>
   </section>
@@ -91,7 +92,7 @@
         <noscript>
           <p class="empty-state">
             这个页面需要 JavaScript 才能列出应用。
-            你可以直接下载：<code>downloads/titan-dial-1.0.0.apk</code>
+            你可以直接下载 <code>downloads/</code> 目录里的 APK。
           </p>
         </noscript>
       </div>
@@ -130,7 +131,7 @@
         <li>
           <p>
             <strong>安装并授权。</strong>
-            首次启动会请求通讯录、通话记录与拨话权限。拒绝也可以使用，
+            首次启动会请求通讯录、通话记录、拨号与短信权限。拒绝也可以使用，
             只是相关列表会是空的——应用会明确说明原因，不会假装没有记录。
           </p>
         </li>
@@ -150,8 +151,9 @@
         <div class="feature">
           <h5>键盘是主要输入方式</h5>
           <p>
-            触控不是唯一入口，实体键盘才是。应用会拦截按键事件，
-            让数字、字母、搜索都走键盘，而不是弹出一个软键盘。
+            触控不是唯一入口，实体键盘才是。应用只拦下数字键与导航键，
+            字母与打字交回系统输入管线——所以搜索框和短信正文照样能用实体键盘打字，
+            而不是被应用抢走。
           </p>
         </div>
         <div class="feature">

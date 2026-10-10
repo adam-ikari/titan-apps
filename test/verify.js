@@ -118,22 +118,22 @@ check('卡片 id 与目录一致', card && card.id === app.id);
 check('标题为应用名', card.querySelector('h3').textContent === app.name);
 check('显示状态徽章', !!card.querySelector('.badge'));
 const dlMeta = card.querySelector('.app-card__download .app-card__meta');
-check('下载区显示版本与体积', !!dlMeta && /v1\.0\.0/.test(dlMeta.textContent) &&
+check('下载区显示版本与体积', !!dlMeta && dlMeta.textContent.includes('v' + app.version) &&
   /MB|KB/.test(dlMeta.textContent), dlMeta && dlMeta.textContent);
 check('下载区有可点击的 APK 链接', (function () {
   const a = card.querySelector('.app-card__download a.btn');
   return !!a && /downloads\/.*\.apk$/.test(a.getAttribute('href'));
 })());
 check('公测版显示提醒条', !!card.querySelector('.notice'));
-check('特点网格有 6 项',
+check('特点网格项数与目录一致',
   card.querySelectorAll('.feature').length === app.highlights.length);
-check('快捷键表有 9 行',
+check('快捷键表行数与目录一致',
   card.querySelectorAll('.shortcut-table tbody tr').length === app.shortcuts.length);
-check('权限表有 6 行',
+check('权限表行数与目录一致',
   card.querySelectorAll('.data-table').length >= 2 &&
   card.querySelectorAll('.data-table')[0].querySelectorAll('tbody tr').length ===
     app.permissions.length);
-check('机型表列出全部 5 款',
+check('机型表行数与目录一致',
   card.querySelectorAll('.data-table')[1].querySelectorAll('tbody tr').length ===
     app.devices.length);
 check('FAQ 全部渲染',
@@ -179,7 +179,11 @@ const goodWin = loadPage();
 const goodHref = goodWin.document
   .querySelector('.app-card__download a.btn')
   .getAttribute('href');
-check('正常文件名未被误伤', goodHref === 'downloads/titan-dial-1.0.0.apk', goodHref);
+check(
+  '正常文件名未被误伤',
+  goodHref === 'downloads/' + app.fileName,
+  goodHref,
+);
 
 console.log('\n[6] 空目录兜底');
 const emptyWin = loadPage(null, { skipCatalog: true });

@@ -136,7 +136,7 @@
     var caption = el(
       'caption',
       null,
-      '在拨号盘、通话记录、通讯录三个分页中都可以使用。'
+      '在拨号盘、通话记录、通讯录、短信四个分页中都可以使用。'
     );
     table.appendChild(caption);
     var body = el('tbody');
